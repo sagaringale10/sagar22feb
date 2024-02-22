@@ -1,4 +1,4 @@
-service: sls-22-feb
+service: sls-SAGAR-22-feb
 frameworkVersion: '3'
 
 provider:
