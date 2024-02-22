@@ -1,18 +1,18 @@
-service:  sagar22feb
-frameworkVersions: '3'
+service: sls-22-feb
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs18.x
+  region: ap-southeast-1
 
-  function:
-    api:
-      handler: index.handler
-      event:
-        - httpApi:
+functions:
+  api:
+    handler: index.handler
+    events:
+      - httpApi:
           path: /
           method: get
 
 plugins:
   - serverless-offline
-
