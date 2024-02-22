@@ -1,5 +1,5 @@
 service:  sagar22feb
-frameworkVersions: 3
+frameworkVersions: '3'
 
 provider:
   name: aws
@@ -9,3 +9,10 @@ provider:
     api:
       handler: index.handler
       event:
+        - httpApi:
+          path: /
+          method: get
+
+plugins:
+  - serverless-offline
+
