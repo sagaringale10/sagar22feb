@@ -1,0 +1,6 @@
+service:  sagar22feb
+frameworkVersions: 3
+
+provider:
+  name: aws
+  runtime: nodejs18.x
