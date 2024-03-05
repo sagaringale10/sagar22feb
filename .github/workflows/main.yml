@@ -5,6 +5,7 @@ on:
   push:
     branches:  [ main, "*"]
 
+      
 jobs:
   pre-deploy:
     runs-on: ubuntu-latest
@@ -43,6 +44,21 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-     steps:
-        - label: "adding secret"
-        - command: "aws secretsmanager get-secret-value --secret-id sagar-secret"
+
+
+      
+  #This is a Secret resource with a randomly generated password in its SecretString JSON.
+   MySecretA:
+    Type: 'AWS::SecretsManager::Secret'
+  Properties:
+    Name: MySecretForAppA
+    Description: "This secret has a dynamically generated secret password."
+    GenerateSecretString:
+      SecretStringTemplate: '{"get-secret-value": "sagar-secret"}'
+      GenerateStringKey: "password"
+      PasswordLength: 30
+      ExcludeCharacters: '"@/\'
+    Tags:
+      -
+        Key: AppName
+        Value: AppA
